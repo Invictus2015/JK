@@ -1,0 +1,22 @@
+  For Each c In Selection
+    R = c.Row
+    V = Cells(R, c.Column).Value
+    I = InStr(V, "$")
+    If I > 0 Then
+       I = I + 1
+       D = ""
+       Do While I <= Len(V)
+         MV = Mid(V, I, 1)
+         Select Case MV
+           Case "."
+             D = D & MV
+           Case "1" To "9"
+             D = D & MV
+           Case Else
+             I = 99999
+         End Select
+          I = I + 1
+       Loop
+       Cells(R, 9).Value = D
+     End If
+  Next c
